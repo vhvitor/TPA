@@ -10,6 +10,8 @@ import java.util.function.Function;
 /**
  *
  * @author vitor
+ * @param <T>
+ * @param <U>
  */
 public class GenericComparator<T, U extends Comparable<? super U>> implements Comparator<T> {
     

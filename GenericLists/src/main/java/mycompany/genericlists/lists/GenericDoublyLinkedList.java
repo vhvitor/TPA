@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author vitor
+ * @param <T>
  */
 public class GenericDoublyLinkedList<T> {
 
@@ -21,8 +22,8 @@ public class GenericDoublyLinkedList<T> {
     private Node<T> tail;                                                       // last element
     private int size;                                                           // number of elements in the list
 
-    private boolean ordered;                                                    // flag: true if list is ordered, false otherwise
-    private Comparator<T> comparator;                                           // Comparator used for ordering and searching
+    private final boolean ordered;                                                    // flag: true if list is ordered, false otherwise
+    private final Comparator<T> comparator;                                           // Comparator used for ordering and searching
 
     /* ------- Constructors ------- */
     
