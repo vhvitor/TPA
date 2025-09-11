@@ -4,10 +4,13 @@
  */
 package mycompany.genericlists.lists;
 
+import exception.ElementNotFoundException;
 import exception.EmptyListException;
 import exception.InvalidListOperationException;
 import mycompany.genericlists.utils.ExceptionMessages;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +19,7 @@ import java.util.logging.Logger;
  * @author vitor
  * @param <T>
  */
-public class GenericDoublyLinkedList<T> {
+public class GenericDoublyLinkedList<T> implements Iterable<T>{
 
     private Node<T> nose;                                                       // first element (head of the list)
     private Node<T> tail;                                                       // last element
@@ -158,6 +161,13 @@ public class GenericDoublyLinkedList<T> {
     /**
      * Checks whether the list contains the specified element.
      * 
+     * <p>
+     * This method delegates the search to {@link #search(T)}.
+     * If the element is not found or the list is empty, it returns {@code false}.
+     * If the element is {@code null}, the exception from {@link #search(t) is
+     * propagated.
+     * </p>
+     * 
      * @param element the element to check; mus not be null
      * @return {@code true} if the element exists in the list, 
      * {@code false} otherwise.
@@ -165,26 +175,84 @@ public class GenericDoublyLinkedList<T> {
      */
     public boolean contains(T element) throws InvalidListOperationException {
         try {
-            getNode(element);
+            // Delegate to search; if found, return true
+            search(element);
             return true;
-        } catch (InvalidListOperationException e) {
-            // Element not found
-            if (ExceptionMessages.get(
-                    "element.not.found").equals(e.getMessage())) return false;
-            
-            throw e;                                                            // Element was null, re-throw (invalid usage)
-        } catch (EmptyListException e) {
+        } 
+        
+        // Element not found or list is empty -> return false
+        catch (ElementNotFoundException | EmptyListException e) {
             return false;
         }
     }
     
-    public T search(T element) throws InvalidListOperationException, EmptyListException {
-        return getNode(element).data;
+    /**
+     * Searches for an element in the list.
+     * 
+     * <p>
+     * This method iterates through the list comparing each item against the
+     * provided element using the conrfigured comparator. If  is the element
+     * is found, it is returned. If the list is ordered, the search is
+     * optimized: as soon as an item greater than the target element is found,
+     * the method throws an {@link ElementNotFoundException}.
+     * </p>
+     * 
+     * @param element the element to search; must not be {@code null}
+     * @return the found element
+     * @throws InvalidListOperationException if the element is {@code null}
+     * @throws EmptyListException if the list is empty
+     * @throws ElementNotFoundException if the element does not exist in the list
+     */
+    public T search(T element) throws InvalidListOperationException, 
+            EmptyListException, ElementNotFoundException {
+        
+        if (element == null) {
+            throw new InvalidListOperationException(
+                    ExceptionMessages.get("element.null"));
+        }
+        
+        if (isEmpty()) {
+            throw new EmptyListException(
+                    ExceptionMessages.get("element.not.found"));
+        }
+        
+        // Iterate through the list items
+        for (T item : this) {
+            int cmp = comparator.compare(item, element);
+            
+            if (cmp == 0) return item;                                          // element found
+            
+            /* If the list is ordered and current item is already greater,
+             * we know the element is not present and can stop searching. */
+            if (ordered && cmp > 0) {
+                throw new ElementNotFoundException(
+                    ExceptionMessages.get("element.not.found"));
+            }
+        }
+        
+        // If the loop finishes without returning, the element is not found
+        throw new ElementNotFoundException(
+                ExceptionMessages.get("element.not.found"));
     }
     
     public boolean isEmpty() {
         return getSize() == 0;
     }
+    
+    /**
+    * Returns an iterator over the elements in this list in proper sequence.
+    *
+    * <p>
+    * This allows the list to be used in enhanced for-loops (for-each) and
+    * any context that requires an {@link Iterable}.
+    * </p>
+    *
+    * @return an {@link Iterator} over the elements in this list.
+    */
+   @Override
+   public Iterator<T> iterator() {
+       return new GenericDoublyLinkedListIterator();
+   }
     
     
     
@@ -319,7 +387,6 @@ public class GenericDoublyLinkedList<T> {
     /* ------- Inner Node class ------- */
     
     private static class Node<T> {
-
         T data;                                                                 // the data stored in this node
         Node<T> next;                                                           // reference to the next node
         Node<T> previous;                                                       // reference to the previous node
@@ -329,4 +396,67 @@ public class GenericDoublyLinkedList<T> {
             this.next = previous = null;                                        // both next and ore
         }
     }
+    
+    
+    
+    /* ------- Inner Iterator class ------- */
+    
+    /**
+ * Iterator for the GenericDoublyLinkedList.
+ * <p>
+ * This inner class provides a way to traverse the list in a
+ * sequential manner, supporting the Iterable interface. It
+ * can access the private members of the outer list class,
+ * including nodes, without exposing them externally.
+ * </p>
+ *
+ * @param <T> the type of elements stored in the list
+ */
+private class GenericDoublyLinkedListIterator implements Iterator<T> {
+
+    // Current node being visited
+    private Node<T> current = nose;
+
+    // Flag to track the first iteration (for circular lists)
+    private boolean firstIteration = true;
+
+    /**
+     * Checks if there is a next element in the iteration.
+     *
+     * @return true if there is a next element, false otherwise
+     */
+    @Override
+    public boolean hasNext() {
+        return current != null && (firstIteration || current != nose);
+    }
+
+    /**
+     * Returns the next element in the iteration.
+     *
+     * @return the next element in the list
+     * @throws NoSuchElementException if the iteration has no more elements
+     */
+    @Override
+    public T next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException("No more elements in the list");
+        }
+
+        T data = current.data;
+        current = current.next;
+        firstIteration = false;
+        return data;
+    }
+
+    /**
+     * Remove operation is not supported by this iterator.
+     *
+     * @throws UnsupportedOperationException if invoked
+     */
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Remove not supported");
+    }
+}
+
 }
