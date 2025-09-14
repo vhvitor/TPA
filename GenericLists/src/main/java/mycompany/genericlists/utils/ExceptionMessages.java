@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class ExceptionMessages {
     
     private static final ResourceBundle bundle = 
-            ResourceBundle.getBundle("exception_messages");
+            ResourceBundle.getBundle("properties.exception_messages");
     
     /**
      * Retrieves a message from the properties file by key.

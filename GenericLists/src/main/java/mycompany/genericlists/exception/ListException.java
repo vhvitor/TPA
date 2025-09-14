@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package exception;
+package mycompany.genericlists.exception;
 
 /**
- * Exception thrown when an element is not found in the list.
+ * Base class for all exceptions related to the generic list.
+ * All specific list exceptions  should inherit from ths class.
  * 
  * @author vitor
  */
-public class ElementNotFoundException extends ListException {
-    
+public class ListException extends Exception {
     /**
-     * Constructor for the exception.
+     * Constructor for the base exception.
      * 
-     * @param message detailed message describing the missing element.
+     * @param message detailed message describing the cause of the exception
      */
-    public ElementNotFoundException(String message) {
+    public ListException(String message) {
         super(message);
     }
     
@@ -26,7 +26,7 @@ public class ElementNotFoundException extends ListException {
      * @param message detailed message
      * @param cause the original exception
      */
-    public ElementNotFoundException(String message, Throwable cause) {
+    public ListException(String message, Throwable cause) {
         super(message, cause);
     }
 }

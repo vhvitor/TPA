@@ -4,7 +4,7 @@
  */
 package mycompany.genericlists.models;
 
-import exception.InvalidListOperationException;
+import mycompany.genericlists.exception.InvalidListOperationException;
 import java.util.Comparator;
 import mycompany.genericlists.utils.ExceptionMessages;
 
@@ -22,8 +22,7 @@ public class StudentService extends Service<Student>{
     public void add(Student student) throws InvalidListOperationException{
         for (Student s : getAll()) {
             if (student.getId() == s.getId()) {
-                throw new InvalidListOperationException(
-                        ExceptionMessages.get("student.exists"));
+                throw new InvalidListOperationException("student.exists");
             }
         }
             

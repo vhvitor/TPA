@@ -4,9 +4,9 @@
  */
 package mycompany.genericlists.lists;
 
-import exception.ElementNotFoundException;
-import exception.EmptyListException;
-import exception.InvalidListOperationException;
+import mycompany.genericlists.exception.ElementNotFoundException;
+import mycompany.genericlists.exception.EmptyListException;
+import mycompany.genericlists.exception.InvalidListOperationException;
 import mycompany.genericlists.utils.ExceptionMessages;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -23,10 +23,10 @@ public class GenericDoublyLinkedList<T> implements Iterable<T>{
 
     private Node<T> nose;                                                       // first element (head of the list)
     private Node<T> tail;                                                       // last element
+    private Comparator<T> comparator;                                           // Comparator used for ordering and searching
     private int size;                                                           // number of elements in the list
 
-    private final boolean ordered;                                                    // flag: true if list is ordered, false otherwise
-    private final Comparator<T> comparator;                                           // Comparator used for ordering and searching
+    private final boolean ordered;                                              // flag: true if list is ordered, false otherwise
 
     /* ------- Constructors ------- */
     
