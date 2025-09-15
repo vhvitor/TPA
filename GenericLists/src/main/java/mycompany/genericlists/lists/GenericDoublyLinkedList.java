@@ -88,16 +88,16 @@ public class GenericDoublyLinkedList<T> implements Iterable<T>{
             
             Node<T> current_node = nose;                                        // start from the head of the list
         
-            if (ordered) {
+            if (!ordered) {
+                // For unordered lists, insert at the end
+                current_node = nose.previous;
+                tail = new_node;
+            } else {
                 // Find the correct insertion point
                 while (current_node != tail
                         && comparator.compare(current_node.data, element) < 0) {
                     current_node = current_node.next;
                 }
-            } else {
-                // For unordered lists, insert at the end
-                current_node = nose.previous;
-                tail = new_node;
             }
 
             // Insert the new node

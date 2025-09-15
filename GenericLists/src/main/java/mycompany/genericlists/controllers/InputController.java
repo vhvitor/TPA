@@ -116,7 +116,7 @@ public class InputController implements Initializable {
     private Button btGerarBalanceado;
     
     // Comparators
-    private GenericComparator<Student, Integer> comparatorById;
+    private GenericComparator<Student, Long> comparatorById;
     private GenericComparator<Student, String> comparatorByName;
     
     // Services
@@ -134,6 +134,8 @@ public class InputController implements Initializable {
         configureAllButtons();
         initAllOrderControls();
         initManual();
+        comparatorById = new GenericComparator<>(Student::getId); // Agora Student::getId (que retorna Long) é compatível
+        comparatorByName = new GenericComparator<>(Student::getName);
     }
     
     
