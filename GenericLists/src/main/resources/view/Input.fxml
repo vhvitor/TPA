@@ -56,7 +56,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox minWidth="-Infinity" prefHeight="600.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.genericlists.controllers.InputController">
+<VBox minWidth="-Infinity" prefHeight="600.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.genericlists.controllers.InputController">
   <children>
     <MenuBar VBox.vgrow="ALWAYS">
       <menus>
@@ -140,7 +140,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </TextField>
-                                    <Button fx:id="btManOK" onAction="#onBtManOKClick" layoutX="176.0" layoutY="270.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
+                                    <Button fx:id="btManOK" layoutX="176.0" layoutY="270.0" mnemonicParsing="false" onAction="#onBtManOKClick" prefHeight="36.0" prefWidth="107.0" text="OK">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -168,32 +168,25 @@
                                  <children>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="432.0">
                                        <children>
-                                          <CheckBox fx:id="cbArqOrdenada" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" text="Ordenada">
+                                          <CheckBox fx:id="cbArqOrdenada" layoutX="28.0" layoutY="24.0" mnemonicParsing="false" text="Ordenada">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </CheckBox>
-                                          <Label layoutX="4.0" layoutY="152.0" text="Arquivo:">
+                                          <Label layoutX="33.0" layoutY="150.0" text="Arquivo:">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="tfArqCaminho" layoutX="67.0" layoutY="145.0" prefHeight="28.0" prefWidth="279.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <Button fx:id="btArqOK" layoutX="153.0" layoutY="236.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Button>
-                                          <Button fx:id="btArqProcurar" layoutX="355.0" layoutY="145.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="78.0" text="Procurar">
+                                          <TextField fx:id="tfArqCaminho" layoutX="110.0" layoutY="150.0" prefHeight="29.0" prefWidth="238.0" promptText="caminho arquivo txt" />
+                                          
+                                          <Button fx:id="btArqOK" layoutX="357.0" layoutY="150.0" mnemonicParsing="false" onAction="#onBtArqOKClick" prefHeight="29.0" prefWidth="42.0" text="OK">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <RadioButton fx:id="rbArq1" layoutX="36.0" layoutY="56.0" mnemonicParsing="false" selected="true" text="Comparar por Matricula">
+                                          <HBox spacing="10.0" />
+                                          <RadioButton fx:id="rbArq1" layoutX="28.0" layoutY="56.0" mnemonicParsing="false" selected="true" text="Comparar por Matricula">
                                              <font>
                                                 <Font size="10.0" />
                                              </font>
@@ -201,11 +194,23 @@
                                                 <ToggleGroup fx:id="tgArqOrd" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton fx:id="rbArq2" layoutX="36.0" layoutY="74.0" mnemonicParsing="false" text="Comparar por Nome" toggleGroup="$tgArqOrd">
+                                          <RadioButton fx:id="rbArq2" layoutX="28.0" layoutY="74.0" mnemonicParsing="false" text="Comparar por Nome" toggleGroup="$tgArqOrd">
                                              <font>
                                                 <Font size="10.0" />
                                              </font>
                                           </RadioButton>
+                                          <Button fx:id="btGerarOrdenado" layoutX="234.0" layoutY="227.0" onAction="#onBtGerarOrdenadoClick" prefHeight="25.0" prefWidth="115.0" text="Gerar Ordenado" />
+                                          <Button fx:id="btGerarBalanceado" layoutX="110.0" layoutY="227.0" onAction="#onBtGerarBalanceadoClick" text="Gerar Balanceado" />
+                                          <TextField fx:id="tfGerarNumRegistros" layoutX="110.0" layoutY="190.0" prefHeight="29.0" prefWidth="239.0" promptText="nº registros a gerar">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label layoutX="35.0" layoutY="192.0" text="Gerar regs:">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -314,9 +319,18 @@
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="364.0">
               <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Lista" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <ListView id="lsItems" fx:id="lsItems" layoutX="14.0" layoutY="44.0" prefHeight="494.0" prefWidth="333.0" />
+                <Label alignment="CENTER" font="$x1" layoutX="144.0" layoutY="14.0" style="&#10;" text="LinkedList" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                        <ListView id="lsItems" fx:id="linkedlstItems" layoutX="14.0" layoutY="42.0" prefHeight="240.0" prefWidth="333.0" />
                         <ScrollBar layoutX="347.0" layoutY="42.0" orientation="VERTICAL" prefHeight="495.0" prefWidth="19.0" />
+                        <ListView id="lsItems" fx:id="arraylstItems" layoutX="14.0" layoutY="305.0" prefHeight="240.0" prefWidth="333.0" />
+                        <Label alignment="CENTER" layoutX="146.0" layoutY="282.0" style="&#10;" text="ArrayList" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x11" />
+                           </font>
+                           <textFill>
+                              <Color red="0.624" green="0.624" blue="0.624" fx:id="x21" />
+                           </textFill>
+                        </Label>
               </children>
             </AnchorPane>
           </content>

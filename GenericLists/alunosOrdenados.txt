@@ -1,0 +1,12 @@
+1,Emanuel França
+2,Cristina Espíndola
+3,Rafael Junqueira
+4,Saulo Coutinho
+5,Fernanda Lacerda
+6,Marcelo Pinto
+7,Caio Gonçalves
+8,Thiago Barbosa
+9,Osvaldo Dias
+10,Zuleica Henrique
+11,Jorge Abreu
+12,Juliana Queiroz

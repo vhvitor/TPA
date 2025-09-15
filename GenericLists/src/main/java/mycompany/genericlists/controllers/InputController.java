@@ -4,13 +4,17 @@
  */
 package mycompany.genericlists.controllers;
 
+import mycompany.genericlists.utils.GeradorArquivosOrdenados;
+import mycompany.genericlists.utils.GeradorArquivosBalanceados;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -25,8 +29,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import mycompany.genericlists.exception.InvalidListOperationException;
 import mycompany.genericlists.models.Service;
 import mycompany.genericlists.models.Student;
@@ -42,10 +44,10 @@ import mycompany.genericlists.utils.GenericComparator;
 public class InputController implements Initializable {
     
     @FXML
-    private Button btArqOK;
-
+    private TextField tfGerarNumRegistros;
+    
     @FXML
-    private Button btArqProcurar;
+    private Button btArqOK;
 
     @FXML
     private Button btBusOK;
@@ -61,9 +63,12 @@ public class InputController implements Initializable {
 
     @FXML
     private CheckBox cbManOrdenada;
-
+    
     @FXML
-    private ListView<Student> lsItems;
+    private ListView<Student> arraylstItems;
+    
+    @FXML
+    private ListView<Student> linkedlstItems;
 
     @FXML
     private RadioButton rbArq1;
@@ -103,19 +108,12 @@ public class InputController implements Initializable {
     
     @FXML
     private ToggleGroup tgArqOrd;
-
-    @FXML
-    private Font x1;
-
-    @FXML
-    private Color x2;
-
-    @FXML
-    private Font x3;
-
-    @FXML
-    private Color x4;
     
+    @FXML
+    private Button btGerarOrdenado;
+
+    @FXML
+    private Button btGerarBalanceado;
     
     // Comparators
     private GenericComparator<Student, Integer> comparatorById;
@@ -143,26 +141,124 @@ public class InputController implements Initializable {
     /* ------- Public API ------- */
     
     @FXML
-    private void onBtManOKClick(ActionEvent event) 
-            throws InvalidListOperationException {
-        
+    void onBtGerarOrdenadoClick(ActionEvent event) {
         try {
-            Comparator<Student> comparator = getManComparator();                // Determine the comparator based on UI state (ordered or not)
-            Student student = buildStudentFromManFields();                      // Build Student object from manual input fields
-        
-            handleInsert(comparator, student);
-            clearManFields();
-            updateListView(studentService);
-            showSuccess("student.success.added", student.getName());
-            setDisableAllOrderControls();
-        }
-        
-        catch (InvalidListOperationException e) {
-            showError(e.getMessage());
-        }
-        
-        catch (NumberFormatException e) {
+            int numRegistros = Integer.parseInt(tfGerarNumRegistros.getText());
+            String nomeArquivo = "alunosOrdenados.txt";
+
+            GeradorArquivosOrdenados.gerarArquivo(numRegistros);
+
+            tfArqCaminho.setText(nomeArquivo);
+            showSuccess("file.success.generated", nomeArquivo);
+
+        } catch (NumberFormatException e) {
+            // Mostra um erro se o texto não for um número válido
             showError("gui.error.invalid.id");
+        }
+    }
+
+    @FXML
+    void onBtGerarBalanceadoClick(ActionEvent event) {
+        try {
+            int numRegistros = Integer.parseInt(tfGerarNumRegistros.getText());
+            String nomeArquivo = "alunosBalanceados.txt";
+
+            GeradorArquivosBalanceados.gerarArquivo(numRegistros);
+
+            tfArqCaminho.setText(nomeArquivo);
+            showSuccess("file.success.generated", nomeArquivo);
+
+        } catch (NumberFormatException e) {
+            // Mostra um erro se o texto não for um número válido
+            showError("gui.error.invalid.id");
+        }
+    }
+        @FXML
+        private void onBtManOKClick(ActionEvent event) 
+                throws InvalidListOperationException {
+
+            try {
+                Comparator<Student> comparator = getManComparator();                // Determine the comparator based on UI state (ordered or not)
+                Student student = buildStudentFromManFields();                      // Build Student object from manual input fields
+
+                handleInsert(comparator, student);
+                clearManFields();
+                updateLinkedListView(studentService);
+                updateArrayListView(studentService);
+                showSuccess("student.success.added", student.getName());
+                setDisableAllOrderControls();
+            }
+
+            catch (InvalidListOperationException e) {
+                showError(e.getMessage());
+            }
+
+            catch (NumberFormatException e) {
+                showError("gui.error.invalid.id");
+            }
+    }
+
+    @FXML
+    void onBtArqOKClick(ActionEvent event) {
+
+        String path = tfArqCaminho.getText();
+        boolean ordered = cbArqOrdenada.isSelected();
+        String comparatorName = rbArq2.isSelected() ? "Nome" : "ID"; // Para o log
+
+
+        Comparator<Student> comparator = rbArq2.isSelected() ? comparatorByName : comparatorById;
+
+        // Cria o serviço se ele ainda não existir
+        if (studentService == null) {
+            studentService = new StudentService(comparator, ordered);
+        } else {
+            System.out.println("[DEBUG] Usando StudentService existente.");
+        }
+
+        try (Scanner scanner = new Scanner(new FileInputStream(path))) {
+            int studentsAdded = 0;
+            System.out.println("[DEBUG] Começando a ler o arquivo...");
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+                String[] parts = line.split(",");
+                if (parts.length == 2) {
+                    long id = Long.parseLong(parts[0].trim());
+                    String name = parts[1].trim();
+
+                    studentService.add(new Student(name, id));
+                    studentsAdded++;
+                } else {
+                    System.out.println("    [DEBUG] Linha ignorada (formato incorreto): '" + line + "'");
+                }
+            }
+            System.out.println("[DEBUG] Fim da leitura do arquivo. Total de alunos processados: " + studentsAdded);
+
+            System.out.println("[DEBUG] Chamando updateListView...");
+            updateLinkedListView(studentService);
+            System.out.println("[DEBUG] updateLinkedListView finalizado.");
+
+            System.out.println("[DEBUG] Chamando updateArrayListView...");
+            updateArrayListView(studentService);
+            System.out.println("[DEBUG] updateArrayListView finalizado.");
+
+            System.out.println("[DEBUG] Desabilitando controles de ordenação...");
+            setDisableAllOrderControls();
+
+            System.out.println("[DEBUG] Chamando showSuccess...");
+            showSuccess("file.success.loaded", studentsAdded);
+            System.out.println("[DEBUG] Processo finalizado com sucesso.");
+
+        } catch (FileNotFoundException e) {
+            System.err.println("[DEBUG] ERRO: Arquivo não encontrado.");
+            showError("file.error.not.found");
+        } catch (NumberFormatException e) {
+            System.err.println("[DEBUG] ERRO: Formato de número inválido no arquivo.");
+            showError("file.error.invalid.id");
+        } catch (InvalidListOperationException e) {
+            System.err.println("[DEBUG] ERRO: Operação inválida na lista - " + e.getMessage());
+            showError("Erro na Operação", e.getMessage());
         }
     }
     
@@ -213,9 +309,13 @@ public class InputController implements Initializable {
        });
    }
     
-    private void updateListView(Service<Student> service) {
-        lsItems.getItems().clear();
-        service.getAll().forEach(lsItems.getItems()::add);
+    private void updateLinkedListView(Service<Student> service) {
+        linkedlstItems.getItems().clear();
+        service.getAll().forEach(linkedlstItems.getItems()::add);
+    }
+    private void updateArrayListView(Service<Student> service) {
+        arraylstItems.getItems().clear();
+        service.getAll().forEach(arraylstItems.getItems()::add);
     }
     
     private void clearManFields() {
@@ -305,6 +405,14 @@ public class InputController implements Initializable {
         alert.showAndWait();
     }
     
+        private void showError(String title, String rawMessage) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(rawMessage);
+            alert.showAndWait();
+        }
+    
     private void showSuccess(String messageKey, Object... params) {
         String message = String.format(
                 ExceptionMessages.get(messageKey), params);
@@ -313,4 +421,5 @@ public class InputController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    
 }
