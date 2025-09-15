@@ -82,33 +82,35 @@ public class GenericDoublyLinkedList<T> implements Iterable<T>{
         try {
             if (this.isEmpty()) {
                 initialize(new_node);
-
+                size++;
+                return;
+            }
+        
+            if(!ordered) {
+                insertNode(tail, new_node);
+                size++;
                 return;
             }
             
-            Node<T> current_node = nose;                                        // start from the head of the list
-        
-            if (ordered) {
-                // Find the correct insertion point
-                while (current_node != tail
-                        && comparator.compare(current_node.data, element) < 0) {
-                    current_node = current_node.next;
-                }
-            } else {
-                // For unordered lists, insert at the end
-                current_node = nose.previous;
-                tail = new_node;
-            }
-
-            // Insert the new node
-            if (current_node == nose && ordered) {
+            if(comparator.compare(nose.data, element) >= 0) {
                 updateNose(new_node);
             } else {
-                insertNode(current_node, new_node);
+                Node<T> current_node = nose.next;
+                
+                while (current_node != tail && 
+                        comparator.compare(current_node.data, element) < 0) {
+                    current_node = current_node.next;
+                }
+                
+                int comp = comparator.compare(current_node.data, element);
+                
+                insertNode((comp > 0) ? current_node.previous : current_node, new_node);
             }
-
-            size ++;                                                            // Update the size of the list
-        } catch (Exception e) {
+            
+            size++;
+        } 
+        
+        catch (Exception e) {
             // Propagate exception with meaningful message
             throw new InvalidListOperationException(
                     ExceptionMessages.get("node.insert.error"), e);
@@ -321,6 +323,8 @@ public class GenericDoublyLinkedList<T> implements Iterable<T>{
             throw new InvalidListOperationException(
                     ExceptionMessages.get("node.null"));
         }
+        
+        if (reference_node == tail) tail = new_node;
         
         // Set the new node's previous and next references
         new_node.previous = reference_node;
