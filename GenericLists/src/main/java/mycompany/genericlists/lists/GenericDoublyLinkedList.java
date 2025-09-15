@@ -96,12 +96,12 @@ public class GenericDoublyLinkedList<T> implements Iterable<T>{
                 }
             } else {
                 // For unordered lists, insert at the end
-                current_node = tail;
+                current_node = nose.previous;
                 tail = new_node;
             }
 
             // Insert the new node
-            if (current_node == nose) {
+            if (current_node == nose && ordered) {
                 updateNose(new_node);
             } else {
                 insertNode(current_node, new_node);

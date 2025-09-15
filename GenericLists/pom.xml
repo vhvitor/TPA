@@ -56,6 +56,9 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>${exec.mainClass}</mainClass>
+                    <options>
+                        <option>${exec.vmArgs}</option>
+                    </options>
                 </configuration>
             </plugin>
         </plugins>

@@ -20,13 +20,18 @@ public class StudentService extends Service<Student>{
     
     @Override
     public void add(Student student) throws InvalidListOperationException{
+        System.out.println("Antes de adicionar: " + list.getSize());
+        System.out.println("Itens no updateListView:");
         for (Student s : getAll()) {
+            System.out.println(s);
+            System.out.println("Comparando novo ID " + student.getId() + " com existente " + s.getId());
             if (student.getId() == s.getId()) {
                 throw new InvalidListOperationException("student.exists");
             }
         }
             
         list.add(student);
+        System.out.println("Depois de adicionar: " + list.getSize());
     }
     
 }
