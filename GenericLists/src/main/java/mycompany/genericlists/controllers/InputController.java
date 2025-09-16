@@ -5,9 +5,13 @@
 package mycompany.genericlists.controllers;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -27,12 +31,16 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import mycompany.genericlists.exception.InvalidListOperationException;
 import mycompany.genericlists.models.Service;
 import mycompany.genericlists.models.Student;
 import mycompany.genericlists.models.StudentService;
 import mycompany.genericlists.utils.ExceptionMessages;
 import mycompany.genericlists.utils.GenericComparator;
+import mycompany.genericlists.utils.StudentFileHandler;
 
 /**
  * FXML Controller class
@@ -55,6 +63,12 @@ public class InputController implements Initializable {
 
     @FXML
     private Button btRemOK;
+    
+    @FXML
+    private CheckBox cbArqArr;
+
+    @FXML
+    private CheckBox cbArqLink;
 
     @FXML
     private CheckBox cbArqOrdenada;
@@ -64,6 +78,9 @@ public class InputController implements Initializable {
 
     @FXML
     private ListView<Student> lsItems;
+    
+    @FXML
+    private ListView<Student> lsItems1;
 
     @FXML
     private RadioButton rbArq1;
@@ -118,11 +135,14 @@ public class InputController implements Initializable {
     
     
     // Comparators
-    private GenericComparator<Student, Integer> comparatorById;
+    private GenericComparator<Student, Long> comparatorById;
     private GenericComparator<Student, String> comparatorByName;
     
     // Services
     private StudentService studentService;
+    
+    // File
+    private File selectedFile;
     
     
     
@@ -133,14 +153,17 @@ public class InputController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        comparatorByName = new GenericComparator<>(s -> s.getName());
+        comparatorById = new GenericComparator<>(s -> s.getId());
+        
         configureAllButtons();
         initAllOrderControls();
-        initManual();
+        initArq();
     }
     
     
     
-    /* ------- Public API ------- */
+    /* ------- GUI EVENT ------- */
     
     @FXML
     private void onBtManOKClick(ActionEvent event) 
@@ -166,9 +189,36 @@ public class InputController implements Initializable {
         }
     }
     
+    @FXML
+    private void onBtArqProcurarClick(ActionEvent event) throws IOException {
+        File file = selectFile((Stage) btArqProcurar.getScene().getWindow());
+        
+        if (file != null) {
+            selectedFile = file;
+            tfArqCaminho.setText(file.getPath());
+        }
+    }
+    
+    @FXML
+    private void onBtArqOKClick(ActionEvent event) throws IOException {
+        StudentFileHandler fileHandler = new StudentFileHandler(selectedFile);
+        
+        if (cbArqArr.isSelected()) {
+            ArrayList<Student> arrayList = fileHandler.makeArrayList();
+            updateArrayView(arrayList);
+        }
+        
+        if (cbArqLink.isSelected()) {
+            LinkedList<Student> linkedList = fileHandler.makeLinkedList();
+            updateLinkedView(linkedList);
+        }
+    }
+    
     
     
     /* ------- Private helper methods ------- */
+    
+    // ALL
     
     /**
     * Configures a button to be automatically enabled or disabled
@@ -218,31 +268,6 @@ public class InputController implements Initializable {
         service.getAll().forEach(lsItems.getItems()::add);
     }
     
-    private void clearManFields() {
-        tfManMatricula.clear();
-        tfManNome.clear();
-    }
-    
-    private Comparator<Student> getManComparator() {
-        return rbMan2.isSelected() ? comparatorByName : comparatorById;
-    }
-    
-    private Student buildStudentFromManFields() {
-        long id = Long.parseLong(tfManMatricula.getText());
-        String name = tfManNome.getText();
-
-        return new Student(name, id);
-    }
-    
-    private boolean validateManFields() {
-        return (!tfManMatricula.getText().isBlank() && 
-                !tfManNome.getText().isBlank());
-    }
-    
-    private void initManual() {        
-        clearManFields();
-    }
-    
     /**
     * Initializes all order-related controls (checkboxes and radio buttons)
     * across all screens, setting default selections and initial enable/disable state.
@@ -278,6 +303,71 @@ public class InputController implements Initializable {
         tgManOrd.getToggles().forEach(t -> ((Node) t).setDisable(true));
 
     }
+    
+    private File selectFile(Stage stage) {
+        FileChooser fileChooser = new FileChooser();                            // Create a new FileChooser instance
+        
+        fileChooser.setTitle("Carregar Alu]nos");                               // Set the title of the dialog
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home")));                     // Set initial directory
+        
+        // Add optional filters for file types
+        fileChooser.getExtensionFilters().add(
+                new ExtensionFilter("Text Files", "*.txt")
+        );
+        
+        return fileChooser.showOpenDialog(stage);
+    }
+    
+    // ADD MANUAL
+    
+    private void clearManFields() {
+        tfManMatricula.clear();
+        tfManNome.clear();
+    }
+    
+    private void updateArrayView(ArrayList<Student> arrayList) {
+        lsItems1.getItems().clear();
+        lsItems1.getItems().addAll(arrayList);
+    }
+    
+    private void updateLinkedView(LinkedList<Student> linkedList) {
+        lsItems.getItems().clear();
+        lsItems.getItems().addAll(linkedList);
+    }
+    
+    private Comparator<Student> getManComparator() {
+        return rbMan2.isSelected() ? comparatorByName : comparatorById;
+    }
+    
+    private Student buildStudentFromManFields() {
+        long id = Long.parseLong(tfManMatricula.getText());
+        String name = tfManNome.getText();
+
+        return new Student(name, id);
+    }
+    
+    private boolean validateManFields() {
+        return (!tfManMatricula.getText().isBlank() && 
+                !tfManNome.getText().isBlank());
+    }
+    
+    // ADD FILE
+    
+    private void initArq() {        
+        tfArqCaminho.setEditable(false);
+    }
+    
+    // REMOVE
+    
+    
+    
+    // SEARCH
+    
+    
+    
+    
+    
     
     private void handleInsert(Comparator<Student> comparator, Student student) 
             throws InvalidListOperationException {

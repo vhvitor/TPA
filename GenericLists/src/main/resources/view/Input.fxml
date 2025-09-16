@@ -41,7 +41,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
@@ -109,7 +108,7 @@
                 <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
               </textFill>
             </Label>
-                  <TabPane layoutY="42.0" prefHeight="379.0" prefWidth="441.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane layoutY="42.0" prefHeight="379.0" prefWidth="434.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Add Manualmente">
                         <content>
@@ -140,7 +139,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </TextField>
-                                    <Button fx:id="btManOK" onAction="#onBtManOKClick" layoutX="176.0" layoutY="270.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
+                                    <Button fx:id="btManOK" layoutX="176.0" layoutY="270.0" mnemonicParsing="false" onAction="#onBtManOKClick" prefHeight="36.0" prefWidth="107.0" text="OK">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -166,7 +165,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="432.0">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="432.0">
                                        <children>
                                           <CheckBox fx:id="cbArqOrdenada" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" text="Ordenada">
                                              <font>
@@ -183,12 +182,12 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </TextField>
-                                          <Button fx:id="btArqOK" layoutX="153.0" layoutY="236.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
+                                          <Button fx:id="btArqOK" layoutX="163.0" layoutY="300.0" mnemonicParsing="false" onAction="#onBtArqOKClick"  prefHeight="36.0" prefWidth="107.0" text="OK">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="btArqProcurar" layoutX="355.0" layoutY="145.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="78.0" text="Procurar">
+                                          <Button fx:id="btArqProcurar" layoutX="355.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtArqProcurarClick" prefHeight="20.0" prefWidth="78.0" text="Procurar">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -206,6 +205,8 @@
                                                 <Font size="10.0" />
                                              </font>
                                           </RadioButton>
+                                          <CheckBox fx:id="cbArqArr" layoutX="36.0" layoutY="234.0" mnemonicParsing="false" text="ArrayList" />
+                                          <CheckBox fx:id="cbArqLink" layoutX="36.0" layoutY="210.0" mnemonicParsing="false" text="LinkedList" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -310,13 +311,18 @@
                   </TabPane>
           </children>
         </AnchorPane>
-        <ScrollPane prefHeight="551.0" prefWidth="441.0">
+        <ScrollPane prefHeight="551.0" prefWidth="412.0">
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="364.0">
               <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Lista" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <ListView id="lsItems" fx:id="lsItems" layoutX="14.0" layoutY="44.0" prefHeight="494.0" prefWidth="333.0" />
-                        <ScrollBar layoutX="347.0" layoutY="42.0" orientation="VERTICAL" prefHeight="495.0" prefWidth="19.0" />
+                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Linkedlist" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" />
+                        <ListView id="lsItems" fx:id="lsItems" layoutX="14.0" layoutY="35.0" prefHeight="240.0" prefWidth="342.0" />
+                        <ListView id="lsItems" fx:id="lsItems1" layoutX="14.0" layoutY="305.0" prefHeight="240.0" prefWidth="342.0" />
+                        <Label layoutX="14.0" layoutY="284.0" text="Arraylist" textFill="#9f9f9f">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
               </children>
             </AnchorPane>
           </content>

@@ -6,6 +6,7 @@ package mycompany.genericlists.models;
 
 import mycompany.genericlists.exception.InvalidListOperationException;
 import java.util.Comparator;
+import java.util.List;
 import mycompany.genericlists.utils.ExceptionMessages;
 
 /**
@@ -34,4 +35,13 @@ public class StudentService extends Service<Student>{
         System.out.println("Depois de adicionar: " + list.getSize());
     }
     
+    public static void addStudentToList(List<Student> list, Student student) {
+    for (Student s : list) {
+        if (s.getId() == student.getId()) {
+            System.out.println("Student with ID " + student.getId() + " already exists. Skipping...");
+            return; // or throw exception if you want
+        }
+    }
+    list.add(student);
+}
 }

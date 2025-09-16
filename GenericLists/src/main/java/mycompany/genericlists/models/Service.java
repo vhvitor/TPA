@@ -8,7 +8,9 @@ import mycompany.genericlists.exception.ElementNotFoundException;
 import mycompany.genericlists.exception.EmptyListException;
 import mycompany.genericlists.exception.InvalidListOperationException;
 import java.util.Comparator;
+import java.util.List;
 import mycompany.genericlists.lists.GenericDoublyLinkedList;
+import mycompany.genericlists.lists.ListWrapper;
 
 /**
  *
@@ -23,9 +25,8 @@ public class Service<T> {
     /* ------- Constructors ------- */
     
     public Service(Comparator<T> comparator, boolean ordered) {
-        list = new GenericDoublyLinkedList<>(comparator, ordered);
+        this.list = new GenericDoublyLinkedList<>(comparator, ordered);
     }
-    
     
     
     /* ------- Public API ------- */
