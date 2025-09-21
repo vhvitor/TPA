@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mycompany.genericlists.exception;
+package mycompany.genericlists.exceptions;
 
 /**
  * Exception thrown when an invalid operation is performed on the list.

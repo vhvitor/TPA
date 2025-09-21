@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mycompany.genericlists.controllers.InputController;
+import mycompany.genericlists.controllers.MainController;
 import mycompany.genericlists.utils.FxmlUtils;
 
 /**
@@ -24,9 +24,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        InputController inputController = new InputController();
+        MainController mainController = new MainController();
         
-        scene = new Scene(FxmlUtils.loadFXML("Input", inputController));
+        scene = new Scene(FxmlUtils.loadFXML("Input", mainController));
         stage.setScene(scene);
         stage.show();
     }

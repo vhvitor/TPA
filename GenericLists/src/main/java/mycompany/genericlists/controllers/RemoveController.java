@@ -8,6 +8,6 @@ package mycompany.genericlists.controllers;
  *
  * @author vitor
  */
-public class StudentController {
+public class RemoveController {
     
 }

@@ -4,13 +4,12 @@
  */
 package mycompany.genericlists.models;
 
-import mycompany.genericlists.exception.ElementNotFoundException;
-import mycompany.genericlists.exception.EmptyListException;
-import mycompany.genericlists.exception.InvalidListOperationException;
+import mycompany.genericlists.exceptions.ElementNotFoundException;
+import mycompany.genericlists.exceptions.EmptyListException;
+import mycompany.genericlists.exceptions.InvalidListOperationException;
 import java.util.Comparator;
 import java.util.List;
 import mycompany.genericlists.lists.GenericDoublyLinkedList;
-import mycompany.genericlists.lists.ListWrapper;
 
 /**
  *
@@ -68,7 +67,7 @@ public class Service<T> {
      * @return
      * @throws InvalidListOperationException
      * @throws EmptyListException 
-     * @throws mycompany.genericlists.exception.ElementNotFoundException 
+     * @throws mycompany.genericlists.exceptions.ElementNotFoundException 
      */
     public T search(T element) 
             throws InvalidListOperationException, EmptyListException, ElementNotFoundException {

@@ -33,21 +33,16 @@
 -->
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -55,296 +50,319 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox minWidth="-Infinity" prefHeight="600.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.genericlists.controllers.InputController">
+<VBox alignment="CENTER" 
+      fx:controller="mycompany.genericlists.controllers.MainController"
+      minWidth="-Infinity" 
+      prefHeight="600.0" 
+      prefWidth="820.0" 
+      xmlns="http://javafx.com/javafx/23.0.1" 
+      xmlns:fx="http://javafx.com/fxml/1">
+    
   <children>
+      
     <MenuBar VBox.vgrow="ALWAYS">
+        
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+          
+        <Menu mnemonicParsing="false" 
+              text="File">
+            
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
+              
+            <MenuItem mnemonicParsing="false" 
+                      text="New" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Open…" />
+            
+            <Menu mnemonicParsing="false" 
+                  text="Open Recent" />
+            
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Close" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Save" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Save As…" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Revert" />
+            
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Preferences…" />
+            
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Quit" />
+            
           </items>
+          
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
+        
+        <Menu mnemonicParsing="false" 
+              text="Edit">
+            
           <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
+              
+            <MenuItem mnemonicParsing="false" 
+                      text="Undo" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Redo" />
+            
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Cut" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Copy" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Paste" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Delete" />
+            
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Select All" />
+            
+            <MenuItem mnemonicParsing="false" 
+                      text="Unselect All" />
+            
           </items>
+          
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        
+        <Menu mnemonicParsing="false" 
+              text="Help">
+            
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+              
+            <MenuItem mnemonicParsing="false" 
+                      text="About MyHelloApp" />
+            
           </items>
+          
         </Menu>
+        
       </menus>
+      
     </MenuBar>
-    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    
+    <SplitPane dividerPositions="0.5" 
+               focusTraversable="true" 
+               prefHeight="-1.0" 
+               prefWidth="-1.0" 
+               VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane prefHeight="551.0" prefWidth="430.0">
+          
+        <AnchorPane prefHeight="551.0" 
+                    prefWidth="388.0">
+            
           <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Opçoes" textAlignment="CENTER" wrapText="false">
+              
+            <Label alignment="CENTER" 
+                   layoutX="14.0" 
+                   layoutY="14.0" 
+                   minWidth="60.0" 
+                   prefWidth="-1.0" 
+                   style="&#10;" 
+                   text="Opçoes" 
+                   textAlignment="CENTER" 
+                   wrapText="false">
+                   
               <font>
-                <Font size="18.0" fx:id="x1" />
+                  
+                <Font size="18.0" 
+                      fx:id="x1" />
+                
               </font>
+              
               <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+                  
+                <Color red="0.624" 
+                       green="0.624" 
+                       blue="0.624" 
+                       fx:id="x2" />
+                
               </textFill>
+              
             </Label>
-                  <TabPane layoutY="42.0" prefHeight="379.0" prefWidth="434.0" tabClosingPolicy="UNAVAILABLE">
+            
+                  <TabPane layoutY="42.0" 
+                           prefHeight="509.0" 
+                           prefWidth="438.0" 
+                           tabClosingPolicy="UNAVAILABLE">
+                      
                     <tabs>
+                        
                       <Tab text="Add Manualmente">
+                          
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="432.0">
-                                 <children>
-                                    <CheckBox fx:id="cbManOrdenada" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" text="Ordenada">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </CheckBox>
-                                    <Label layoutX="66.0" layoutY="157.0" text="Nome:">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="tfManNome" layoutX="129.0" layoutY="150.0" prefHeight="23.0" prefWidth="225.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </TextField>
-                                    <Label layoutX="42.0" layoutY="208.0" text="Matricula:">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="tfManMatricula" layoutX="129.0" layoutY="206.0" prefHeight="23.0" prefWidth="225.0">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </TextField>
-                                    <Button fx:id="btManOK" layoutX="176.0" layoutY="270.0" mnemonicParsing="false" onAction="#onBtManOKClick" prefHeight="36.0" prefWidth="107.0" text="OK">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Button>
-                                    <RadioButton fx:id="rbMan1" layoutX="36.0" layoutY="56.0" mnemonicParsing="false" selected="true" text="Comparar por Matricula">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font>
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="tgManOrd" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    <RadioButton fx:id="rbMan2" layoutX="36.0" layoutY="74.0" mnemonicParsing="false" text="Comparar por Nome" toggleGroup="$tgManOrd">
-                                       <font>
-                                          <Font size="10.0" />
-                                       </font>
-                                    </RadioButton>
-                                 </children>
-                              </AnchorPane>
+                            
+                          <fx:include fx:id="addManualPane" 
+                                      source="AddManual.fxml" />
+                          
                         </content>
+                        
                       </Tab>
+                      
                       <Tab text="Add Arquivo">
+                          
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="432.0">
-                                       <children>
-                                          <CheckBox fx:id="cbArqOrdenada" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" text="Ordenada">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </CheckBox>
-                                          <Label layoutX="4.0" layoutY="152.0" text="Arquivo:">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="tfArqCaminho" layoutX="67.0" layoutY="145.0" prefHeight="28.0" prefWidth="279.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <Button fx:id="btArqOK" layoutX="163.0" layoutY="300.0" mnemonicParsing="false" onAction="#onBtArqOKClick"  prefHeight="36.0" prefWidth="107.0" text="OK">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Button>
-                                          <Button fx:id="btArqProcurar" layoutX="355.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtArqProcurarClick" prefHeight="20.0" prefWidth="78.0" text="Procurar">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Button>
-                                          <RadioButton fx:id="rbArq1" layoutX="36.0" layoutY="56.0" mnemonicParsing="false" selected="true" text="Comparar por Matricula">
-                                             <font>
-                                                <Font size="10.0" />
-                                             </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="tgArqOrd" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton fx:id="rbArq2" layoutX="36.0" layoutY="74.0" mnemonicParsing="false" text="Comparar por Nome" toggleGroup="$tgArqOrd">
-                                             <font>
-                                                <Font size="10.0" />
-                                             </font>
-                                          </RadioButton>
-                                          <CheckBox fx:id="cbArqArr" layoutX="36.0" layoutY="234.0" mnemonicParsing="false" text="ArrayList" />
-                                          <CheckBox fx:id="cbArqLink" layoutX="36.0" layoutY="210.0" mnemonicParsing="false" text="LinkedList" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
+                            
+                          <fx:include fx:id="addFilePane" 
+                                      source="AddFile.fxml" />
+                          
                         </content>
+                        
                       </Tab>
+                      
                         <Tab text="Remover">
+                            
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="432.0">
-                                       <children>
-                                          <Label layoutX="72.0" layoutY="123.0" text="Nome:">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="tfRemNome" layoutX="135.0" layoutY="116.0" prefHeight="23.0" prefWidth="225.0">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </TextField>
-                                          <Label layoutX="48.0" layoutY="174.0" text="Matricula:">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="tfRemMatricula" layoutX="135.0" layoutY="172.0" prefHeight="23.0" prefWidth="225.0">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </TextField>
-                                          <Button fx:id="btRemOK" layoutX="182.0" layoutY="236.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Button>
-                                          <Label layoutX="101.0" layoutY="21.0" text="Digite os dados do aluno ">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="165.0" layoutY="50.0" text="para remover">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
+                               
+                              <fx:include fx:id="removerPane" 
+                                          source="Remover.fxml" />
+                              
                            </content>
+                           
                         </Tab>
+                        
                         <Tab text="Buscar">
+                            
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="380.0">
-                                 <children>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="292.0" prefWidth="432.0">
-                                       <children>
-                                          <Label layoutX="72.0" layoutY="123.0" text="Nome:">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="tfBusNome" layoutX="135.0" layoutY="116.0" prefHeight="23.0" prefWidth="225.0">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </TextField>
-                                          <Label layoutX="48.0" layoutY="174.0" text="Matricula:">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="tfBusMatricula" layoutX="135.0" layoutY="172.0" prefHeight="23.0" prefWidth="225.0">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </TextField>
-                                          <Button fx:id="btBusOK" layoutX="182.0" layoutY="236.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Button>
-                                          <Label layoutX="94.0" layoutY="22.0" text="Digite os dados do aluno ">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="166.0" layoutY="51.0" text="para buscar">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
+                               
+                              <fx:include fx:id="buscarPane" 
+                                          source="Buscar.fxml" />
+                              
                            </content>
+                           
                         </Tab>
+                        
                     </tabs>
+                    
                   </TabPane>
+                  
           </children>
+          
         </AnchorPane>
-        <ScrollPane prefHeight="551.0" prefWidth="412.0">
+        
+        <ScrollPane prefHeight="551.0" 
+                    prefWidth="367.0">
+            
           <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="364.0">
-              <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Linkedlist" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" />
-                        <ListView id="lsItems" fx:id="lsItems" layoutX="14.0" layoutY="35.0" prefHeight="240.0" prefWidth="342.0" />
-                        <ListView id="lsItems" fx:id="lsItems1" layoutX="14.0" layoutY="305.0" prefHeight="240.0" prefWidth="342.0" />
-                        <Label layoutX="14.0" layoutY="284.0" text="Arraylist" textFill="#9f9f9f">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-              </children>
+              
+            <AnchorPane id="Content" 
+                        minHeight="-1.0" 
+                        minWidth="-1.0" 
+                        prefHeight="545.0" 
+                        prefWidth="364.0"> 
+                
+                <children> 
+                    
+                    <Label alignment="CENTER" 
+                           font="$x1" 
+                           layoutX="14.0" 
+                           layoutY="14.0" 
+                           style="&#10;" 
+                           text="Linkedlist" 
+                           textAlignment="CENTER" 
+                           textFill="#9f9f9f" 
+                           wrapText="false" /> 
+                           
+                    <fx:include source="LVLinked.fxml" 
+                                fx:id="lvLinkedPane" 
+                                layoutX="14.0" 
+                                layoutY="35.0" />
+                     
+                    <fx:include source="LVArray.fxml" fx:id="lvArrayPane" 
+                                layoutX="14.0" 
+                                layoutY="305.0" />
+                    
+                    <Label layoutX="14.0" 
+                           layoutY="284.0" 
+                           text="Arraylist" 
+                           textFill="#9f9f9f"> 
+                        
+                        <font> 
+                            <Font size="18.0" /> 
+                        </font> 
+                        
+                    </Label> 
+                    
+                </children> 
+                
             </AnchorPane>
+            
           </content>
+          
         </ScrollPane>
+        
       </items>
+      
     </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="ALWAYS">
+    
+    <HBox id="HBox" 
+          alignment="CENTER_LEFT" 
+          prefHeight="0.0" 
+          prefWidth="900.0" 
+          spacing="5.0" 
+          VBox.vgrow="ALWAYS">
+        
       <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+          
+        <Label maxHeight="1.7976931348623157E308" 
+               maxWidth="-1.0" text="Left status" 
+               HBox.hgrow="ALWAYS">
+            
           <font>
-            <Font size="11.0" fx:id="x3" />
+            <Font size="11.0" 
+                  fx:id="x3" />
           </font>
+          
           <textFill>
-            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
+              
+            <Color red="0.625" 
+                   green="0.625" 
+                   blue="0.625" 
+                   fx:id="x4" />
           </textFill>
+          
         </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
+        
+        <Pane prefHeight="-1.0" 
+              prefWidth="-1.0" 
+              HBox.hgrow="ALWAYS" />
+        
+        <Label font="$x3" 
+               maxWidth="-1.0" 
+               text="Right status" 
+               textFill="$x4" 
+               HBox.hgrow="NEVER" />
+        
       </children>
+      
       <padding>
-        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+          
+        <Insets bottom="3.0" 
+                left="3.0" 
+                right="3.0" 
+                top="3.0" />
       </padding>
+      
     </HBox>
+    
   </children>
+  
 </VBox>

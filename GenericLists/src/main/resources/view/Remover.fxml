@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="mycompany.genericlists.controllers.RemoveController"
+            minHeight="0.0" 
+            minWidth="0.0" 
+            prefHeight="180.0" 
+            prefWidth="200.0">
+   <children>
+
+      <AnchorPane minHeight="0.0" 
+                  minWidth="0.0" 
+                  prefHeight="298.0" 
+                  prefWidth="432.0">
+         <children>
+
+            <Label layoutX="72.0" 
+                   layoutY="123.0" 
+                   text="Nome:">
+
+               <font>
+                  <Font size="16.0" />
+               </font>
+
+            </Label>
+
+            <TextField fx:id="tfRemNome" 
+                       layoutX="135.0" 
+                       layoutY="116.0" 
+                       prefHeight="23.0" 
+                       prefWidth="225.0">
+
+               <font>
+                  <Font size="16.0" />
+               </font>
+
+            </TextField>
+
+            <Label layoutX="48.0" 
+                   layoutY="174.0" 
+                   text="Matricula:">
+
+               <font>
+                  <Font size="16.0" />
+               </font>
+
+            </Label>
+
+            <TextField fx:id="tfRemMatricula" 
+                       layoutX="135.0" 
+                       layoutY="172.0" 
+                       prefHeight="23.0"
+                       prefWidth="225.0">
+
+               <font>
+                  <Font size="16.0" />
+               </font>
+
+            </TextField>
+
+            <Button fx:id="btRemOK" 
+                    layoutX="182.0" 
+                    layoutY="236.0" 
+                    mnemonicParsing="false" 
+                    prefHeight="36.0" 
+                    prefWidth="107.0" 
+                    text="OK">
+
+               <font>
+                  <Font size="16.0" />
+               </font>
+
+            </Button>
+
+            <Label layoutX="101.0" 
+                   layoutY="21.0" 
+                   text="Digite os dados do aluno ">
+
+               <font>
+                  <Font size="24.0" />
+               </font>
+
+            </Label>
+
+            <Label layoutX="165.0" 
+                   layoutY="50.0" 
+                   text="para remover">
+
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+
+         </children>
+
+      </AnchorPane>
+
+   </children>
+
+</AnchorPane>

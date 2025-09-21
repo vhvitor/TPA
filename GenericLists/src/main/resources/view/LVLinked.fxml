@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="240.0" prefWidth="342.0"
+            fx:controller="mycompany.genericlists.controllers.ListViewController">
+    <children>
+        <ListView fx:id="lvLinked"
+                  layoutX="0.0" layoutY="0.0"
+                  prefHeight="240.0" prefWidth="342.0" />
+    </children>
+</AnchorPane>

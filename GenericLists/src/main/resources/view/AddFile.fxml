@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" 
+            minWidth="0.0" 
+            prefHeight="509.0" 
+            prefWidth="432.0" 
+            xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="mycompany.genericlists.controllers.AddFileController">
+    
+    <children>
+
+       <AnchorPane minHeight="0.0" 
+                   minWidth="0.0" 
+                   prefHeight="509.0" 
+                   prefWidth="432.0">
+           
+          <children>
+
+             <Label layoutX="2.0" 
+                    layoutY="82.0" 
+                    text="Arquivo:">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </Label>
+
+             <TextField fx:id="tfArqCaminho" 
+                        layoutX="65.0" 
+                        layoutY="75.0" 
+                        prefHeight="28.0" 
+                        prefWidth="279.0" 
+                        promptText="Nenhum arquivo selecionado...">
+                 
+                <font>
+                   <Font size="14.0" />
+                </font>
+                
+             </TextField>
+
+             <Button fx:id="btArqGerar" 
+                     layoutX="230.0" 
+                     layoutY="132.0" 
+                     mnemonicParsing="false" 
+                     prefHeight="36.0" 
+                     prefWidth="107.0" 
+                     text="Gerar lista">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </Button>
+
+             <Button fx:id="btArqProcurar" 
+                     layoutX="353.0" 
+                     layoutY="75.0" 
+                     mnemonicParsing="false" 
+                     prefHeight="20.0" 
+                     prefWidth="78.0" 
+                     text="Procurar">
+                 
+                <font>
+                   <Font size="14.0" />
+                </font>
+                
+             </Button>
+
+             <CheckBox fx:id="cbArqArr" 
+                       layoutX="72.0" 
+                       layoutY="155.0" 
+                       mnemonicParsing="false" 
+                       text="ArrayList" />
+
+             <CheckBox fx:id="cbArqLink" 
+                       layoutX="72.0" 
+                       layoutY="131.0" 
+                       mnemonicParsing="false" 
+                       text="LinkedList" />
+
+             <Label layoutX="66.0" 
+                    layoutY="283.0" 
+                    text="Nome:">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </Label>
+
+             <TextField fx:id="tfArqNome" 
+                        layoutX="123.0" 
+                        layoutY="279.0" 
+                        prefHeight="23.0" 
+                        prefWidth="225.0">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </TextField>
+
+             <Label layoutX="47.0" 
+                    layoutY="324.0" 
+                    text="Matricula:">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </Label>
+
+             <TextField fx:id="tfarqMatricula" 
+                        layoutX="123.0" 
+                        layoutY="320.0" 
+                        prefHeight="23.0" 
+                        prefWidth="225.0">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </TextField>
+
+             <Button fx:id="btArqOK" 
+                     layoutX="163.0" 
+                     layoutY="424.0" 
+                     mnemonicParsing="false" 
+                     prefHeight="36.0" 
+                     prefWidth="107.0" 
+                     text="OK">
+                 
+                <font>
+                   <Font size="16.0" />
+                </font>
+                
+             </Button>
+
+             <Separator layoutX="2.0" 
+                        layoutY="203.0" 
+                        prefHeight="0.0" 
+                        prefWidth="432.0" />
+
+             <ComboBox fx:id="cbbArqOp" 
+                       layoutX="124.0" 
+                       layoutY="358.0" 
+                       prefHeight="23.0" 
+                       prefWidth="219.0" 
+                       promptText="Selecione a operação..." />
+
+             <Label layoutX="149.0" 
+                    layoutY="15.0" 
+                    text="Carregar arquivo">
+                 
+                <font>
+                   <Font size="18.0" />
+                </font>
+                
+             </Label>
+
+             <Label layoutX="141.0" 
+                    layoutY="218.0" 
+                    text="Operaçoes com Listas">
+                 
+                <font>
+                   <Font size="18.0" />
+                </font>
+                
+             </Label>
+             
+          </children>
+          
+       </AnchorPane>
+       
+    </children>
+    
+ </AnchorPane>

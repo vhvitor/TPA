@@ -4,9 +4,9 @@
  */
 package mycompany.genericlists.lists;
 
-import mycompany.genericlists.exception.ElementNotFoundException;
-import mycompany.genericlists.exception.EmptyListException;
-import mycompany.genericlists.exception.InvalidListOperationException;
+import mycompany.genericlists.exceptions.ElementNotFoundException;
+import mycompany.genericlists.exceptions.EmptyListException;
+import mycompany.genericlists.exceptions.InvalidListOperationException;
 import mycompany.genericlists.utils.ExceptionMessages;
 import java.util.Comparator;
 import java.util.Iterator;

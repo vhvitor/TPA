@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mycompany.genericlists.exception;
+package mycompany.genericlists.exceptions;
 
 /**
- * Base class for all exceptions related to the generic list.
- * All specific list exceptions  should inherit from ths class.
- * 
+ * Exception thrown when an operation cannot be performed because list is empty.
+ *
  * @author vitor
  */
-public class ListException extends Exception {
+public class EmptyListException extends ListException {
+    
     /**
-     * Constructor for the base exception.
+     * Constructor for the exception
      * 
-     * @param message detailed message describing the cause of the exception
+     * @param message detailed message describing the invalid operation
      */
-    public ListException(String message) {
+    public EmptyListException(String message) {
         super(message);
     }
     
@@ -26,7 +26,8 @@ public class ListException extends Exception {
      * @param message detailed message
      * @param cause the original exception
      */
-    public ListException(String message, Throwable cause) {
+    public EmptyListException(String message, Throwable cause) {
         super(message, cause);
     }
+    
 }
