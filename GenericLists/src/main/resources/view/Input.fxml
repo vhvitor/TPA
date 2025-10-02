@@ -32,9 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -44,19 +42,11 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" 
-      fx:controller="mycompany.genericlists.controllers.MainController"
-      minWidth="-Infinity" 
-      prefHeight="600.0" 
-      prefWidth="820.0" 
-      xmlns="http://javafx.com/javafx/23.0.1" 
-      xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" minWidth="-Infinity" prefHeight="600.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.genericlists.controllers.MainController">
     
   <children>
       
@@ -64,92 +54,71 @@
         
       <menus>
           
-        <Menu mnemonicParsing="false" 
-              text="File">
+        <Menu mnemonicParsing="false" text="File">
             
           <items>
               
-            <MenuItem mnemonicParsing="false" 
-                      text="New" />
+            <MenuItem mnemonicParsing="false" text="New" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Open…" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
             
-            <Menu mnemonicParsing="false" 
-                  text="Open Recent" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
             
             <SeparatorMenuItem mnemonicParsing="false" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Close" />
+            <MenuItem mnemonicParsing="false" text="Close" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Revert" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
             
             <SeparatorMenuItem mnemonicParsing="false" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Preferences…" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
             
             <SeparatorMenuItem mnemonicParsing="false" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Quit" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
             
           </items>
           
         </Menu>
         
-        <Menu mnemonicParsing="false" 
-              text="Edit">
+        <Menu mnemonicParsing="false" text="Edit">
             
           <items>
               
-            <MenuItem mnemonicParsing="false" 
-                      text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Undo" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Redo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
             
             <SeparatorMenuItem mnemonicParsing="false" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Delete" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
             
             <SeparatorMenuItem mnemonicParsing="false" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
             
-            <MenuItem mnemonicParsing="false" 
-                      text="Unselect All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
             
           </items>
           
         </Menu>
         
-        <Menu mnemonicParsing="false" 
-              text="Help">
+        <Menu mnemonicParsing="false" text="Help">
             
           <items>
               
-            <MenuItem mnemonicParsing="false" 
-                      text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
             
           </items>
           
@@ -159,70 +128,48 @@
       
     </MenuBar>
     
-    <SplitPane dividerPositions="0.5" 
-               focusTraversable="true" 
-               prefHeight="-1.0" 
-               prefWidth="-1.0" 
-               VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
           
-        <AnchorPane prefHeight="551.0" 
-                    prefWidth="388.0">
+        <AnchorPane prefHeight="551.0" prefWidth="388.0">
             
           <children>
               
-            <Label alignment="CENTER" 
-                   layoutX="14.0" 
-                   layoutY="14.0" 
-                   minWidth="60.0" 
-                   prefWidth="-1.0" 
-                   style="&#10;" 
-                   text="Opçoes" 
-                   textAlignment="CENTER" 
-                   wrapText="false">
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Opçoes" textAlignment="CENTER" wrapText="false">
                    
               <font>
                   
-                <Font size="18.0" 
-                      fx:id="x1" />
+                <Font size="18.0" fx:id="x1" />
                 
               </font>
               
               <textFill>
                   
-                <Color red="0.624" 
-                       green="0.624" 
-                       blue="0.624" 
-                       fx:id="x2" />
+                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
                 
               </textFill>
               
             </Label>
             
-                  <TabPane layoutY="42.0" 
-                           prefHeight="509.0" 
-                           prefWidth="438.0" 
-                           tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tbpAll" layoutY="42.0" prefHeight="528.0" prefWidth="438.0" tabClosingPolicy="UNAVAILABLE">
                       
                     <tabs>
                         
-                      <Tab text="Add Manualmente">
+                      <Tab fx:id="tbAddManual" text="Add Manualmente">
                           
                         <content>
                             
-                          <fx:include fx:id="addManualPane" 
-                                      source="AddManual.fxml" />
+                          <fx:include fx:id="addManualPane" source="AddManual.fxml" />
                           
                         </content>
                         
                       </Tab>
                       
-                      <Tab text="Add Arquivo">
+                      <Tab fx:id="tbAddArquivo" text="Add Arquivo">
                           
                         <content>
                             
-                          <fx:include fx:id="addFilePane" 
-                                      source="AddFile.fxml" />
+                          <fx:include fx:id="addFilePane" source="AddFile.fxml" />
                           
                         </content>
                         
@@ -232,8 +179,7 @@
                             
                            <content>
                                
-                              <fx:include fx:id="removerPane" 
-                                          source="Remover.fxml" />
+                              <fx:include fx:id="removerPane" source="Remover.fxml" />
                               
                            </content>
                            
@@ -243,8 +189,7 @@
                             
                            <content>
                                
-                              <fx:include fx:id="buscarPane" 
-                                          source="Buscar.fxml" />
+                              <fx:include fx:id="buscarPane" source="Buscar.fxml" />
                               
                            </content>
                            
@@ -258,52 +203,11 @@
           
         </AnchorPane>
         
-        <ScrollPane prefHeight="551.0" 
-                    prefWidth="367.0">
+        <ScrollPane prefHeight="551.0" prefWidth="367.0">
             
           <content>
               
-            <AnchorPane id="Content" 
-                        minHeight="-1.0" 
-                        minWidth="-1.0" 
-                        prefHeight="545.0" 
-                        prefWidth="364.0"> 
-                
-                <children> 
-                    
-                    <Label alignment="CENTER" 
-                           font="$x1" 
-                           layoutX="14.0" 
-                           layoutY="14.0" 
-                           style="&#10;" 
-                           text="Linkedlist" 
-                           textAlignment="CENTER" 
-                           textFill="#9f9f9f" 
-                           wrapText="false" /> 
-                           
-                    <fx:include source="LVLinked.fxml" 
-                                fx:id="lvLinkedPane" 
-                                layoutX="14.0" 
-                                layoutY="35.0" />
-                     
-                    <fx:include source="LVArray.fxml" fx:id="lvArrayPane" 
-                                layoutX="14.0" 
-                                layoutY="305.0" />
-                    
-                    <Label layoutX="14.0" 
-                           layoutY="284.0" 
-                           text="Arraylist" 
-                           textFill="#9f9f9f"> 
-                        
-                        <font> 
-                            <Font size="18.0" /> 
-                        </font> 
-                        
-                    </Label> 
-                    
-                </children> 
-                
-            </AnchorPane>
+            <fx:include fx:id="listViewPane" source="ListView.fxml" />
             
           </content>
           
@@ -312,56 +216,6 @@
       </items>
       
     </SplitPane>
-    
-    <HBox id="HBox" 
-          alignment="CENTER_LEFT" 
-          prefHeight="0.0" 
-          prefWidth="900.0" 
-          spacing="5.0" 
-          VBox.vgrow="ALWAYS">
-        
-      <children>
-          
-        <Label maxHeight="1.7976931348623157E308" 
-               maxWidth="-1.0" text="Left status" 
-               HBox.hgrow="ALWAYS">
-            
-          <font>
-            <Font size="11.0" 
-                  fx:id="x3" />
-          </font>
-          
-          <textFill>
-              
-            <Color red="0.625" 
-                   green="0.625" 
-                   blue="0.625" 
-                   fx:id="x4" />
-          </textFill>
-          
-        </Label>
-        
-        <Pane prefHeight="-1.0" 
-              prefWidth="-1.0" 
-              HBox.hgrow="ALWAYS" />
-        
-        <Label font="$x3" 
-               maxWidth="-1.0" 
-               text="Right status" 
-               textFill="$x4" 
-               HBox.hgrow="NEVER" />
-        
-      </children>
-      
-      <padding>
-          
-        <Insets bottom="3.0" 
-                left="3.0" 
-                right="3.0" 
-                top="3.0" />
-      </padding>
-      
-    </HBox>
     
   </children>
   

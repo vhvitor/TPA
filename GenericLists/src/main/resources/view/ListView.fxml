@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="Content" 
+<AnchorPane fx:controller="mycompany.genericlists.controllers.ListViewController"
+            fx:id="listView" 
             minHeight="-1.0" 
             minWidth="-1.0" 
             prefHeight="545.0" 
@@ -19,7 +20,7 @@
              layoutX="14.0" 
              layoutY="14.0" 
              style="&#10;" 
-             text="Linkedlist resultados:" 
+             text="Linkedlist" 
              textAlignment="CENTER" 
              textFill="#9f9f9f" 
              wrapText="false">
@@ -32,15 +33,13 @@
          
       </Label>
       
-      <ListView id="lvLinked" 
-                fx:id="lvLinked" 
+      <ListView fx:id="lvLinked" 
                 layoutX="14.0" 
                 layoutY="35.0" 
                 prefHeight="240.0" 
                 prefWidth="342.0" />
       
-      <ListView id="lvArray" 
-                fx:id="lvArray" 
+      <ListView fx:id="lvArray" 
                 layoutX="14.0" 
                 layoutY="305.0" 
                 prefHeight="240.0"
@@ -48,7 +47,7 @@
       
       <Label layoutX="14.0" 
              layoutY="284.0" 
-             text="Arraylist resultados:" 
+             text="Arraylist" 
              textFill="#9f9f9f">
           
          <font>

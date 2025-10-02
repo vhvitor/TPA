@@ -8,7 +8,6 @@ import mycompany.genericlists.exceptions.ElementNotFoundException;
 import mycompany.genericlists.exceptions.EmptyListException;
 import mycompany.genericlists.exceptions.InvalidListOperationException;
 import java.util.Comparator;
-import java.util.List;
 import mycompany.genericlists.lists.GenericDoublyLinkedList;
 
 /**
@@ -16,8 +15,8 @@ import mycompany.genericlists.lists.GenericDoublyLinkedList;
  * @author vitor
  * @param <T>
  */
-public class Service<T> {
-    final GenericDoublyLinkedList<T> list;
+public abstract class Service<T> {
+    protected final GenericDoublyLinkedList<T> list;
     
     
     
@@ -30,14 +29,7 @@ public class Service<T> {
     
     /* ------- Public API ------- */
     
-    /**
-     * 
-     * @param element
-     * @throws InvalidListOperationException 
-     */
-    public void add(T element) throws InvalidListOperationException {
-        list.add(element);
-    }
+    public abstract void add(T element) throws InvalidListOperationException;
     
     /**
      * 
@@ -45,11 +37,7 @@ public class Service<T> {
      * @throws InvalidListOperationException
      * @throws EmptyListException 
      */
-    public void remove(T element) 
-            throws InvalidListOperationException, EmptyListException {
-        
-        list.remove(element);
-    }
+    public abstract void remove(T element) throws InvalidListOperationException, EmptyListException;
     
     /**
      * 
@@ -75,10 +63,10 @@ public class Service<T> {
         return list.search(element);
     }
     
-    /**
-     * 
-     * @return 
-     */
+    
+    
+    /* ------- Getters and Setters ------- */
+    
     public boolean isEmpty() {
         return list.isEmpty();
     }

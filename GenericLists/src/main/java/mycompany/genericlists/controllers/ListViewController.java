@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import mycompany.genericlists.models.Service;
 import mycompany.genericlists.models.Student;
-import mycompany.genericlists.models.StudentService;
 
 /**
  *
@@ -25,13 +24,36 @@ public class ListViewController {
     
     /* ------- Public API ------- */
     
-    public void updateLinkedView(Service<Student> service) {
+    public void updateListView(Service<Student> service) {
         lvLinked.getItems().clear();
         service.getAll().forEach(lvLinked.getItems()::add);
     }
     
     public void updateListView(List<Student> list) {
-        lvLinked.getItems().clear();
-        lvLinked.getItems().addAll(list);
+        if (list instanceof LinkedList) {
+            lvLinked.getItems().clear();
+            lvLinked.getItems().addAll(list);
+        }
+        
+        if (list instanceof ArrayList) {
+            lvArray.getItems().clear();
+            lvArray.getItems().addAll(list);
+        }
+    }
+    
+    public void disableLinked() {
+        lvLinked.setDisable(true);
+    }
+    
+    public void disableArray() {
+        lvArray.setDisable(true);
+    }
+
+    void enableArray() {
+        lvArray.setDisable(false);
+    }
+
+    void enableLinked() {
+        lvLinked.setDisable(false);
     }
 }

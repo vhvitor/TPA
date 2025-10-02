@@ -4,7 +4,6 @@
  */
 package mycompany.genericlists.controllers;
 
-import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -16,22 +15,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import mycompany.genericlists.events.StudentInsertEvent;
+import mycompany.genericlists.dtos.StudentDTO;
 import mycompany.genericlists.exceptions.InvalidListOperationException;
 import mycompany.genericlists.models.Student;
-import mycompany.genericlists.models.StudentService;
-import mycompany.genericlists.utils.ExceptionMessages;
 import mycompany.genericlists.utils.GenericComparator;
 
 /**
@@ -47,21 +39,15 @@ public class AddManualController implements Initializable{
     @FXML private TextField tfManNome;
     @FXML private ToggleGroup tgManOrd;
     
-    // Consumer
-    private Consumer<StudentInsertEvent> onStudentAdded;
+    // Consumer callback
+    private Consumer<StudentDTO> onStudentAdded;
     
     // Comparators
     private GenericComparator<Student, Long> comparatorById;
     private GenericComparator<Student, String> comparatorByName;
     
     // DTOs
-    private StudentInsertEvent transfer;
-    
-    
-    
-    
-    /* ------- Constructors ------- */
-    
+    private StudentDTO transfer;
     
     
     
@@ -81,7 +67,7 @@ public class AddManualController implements Initializable{
     
     /* ------- GUI EVENT ------- */
     
-    @FXML
+    @FXML // SE MUDAR, TEM QUE MUDAR O ENUM!!!!!!!!!
     private void onBtManOKClick(ActionEvent event) throws InvalidListOperationException {
         
         if (!validateFields()) {
@@ -92,7 +78,7 @@ public class AddManualController implements Initializable{
         Comparator<Student> comparator = getManComparator();                    // Determine the comparator based on UI state (ordered or not)
         Student student = buildStudent();                                       // Build Student object from manual input fields
 
-        transfer = new StudentInsertEvent(student, 
+        transfer = new StudentDTO(student, 
                     comparator, 
                     cbManOrdenada.isSelected());
 
@@ -108,7 +94,7 @@ public class AddManualController implements Initializable{
     
     /* ------- Public API ------- */
     
-    public void setOnStudentAdded(Consumer<StudentInsertEvent> callback) {
+    public void setOnStudentAdded(Consumer<StudentDTO> callback) {
         onStudentAdded = callback;
     }
     
@@ -153,23 +139,20 @@ public class AddManualController implements Initializable{
         tfManNome.clear();
     }
     
-    private boolean validateManFields() {
-        return (!tfManMatricula.getText().isBlank() && 
-                !tfManNome.getText().isBlank());
-    }
-    
     private void setDisableOrderControls() {
         cbManOrdenada.setDisable(true);
-        
         tgManOrd.getToggles().forEach(t -> ((Node) t).setDisable(true));
 
     }
     
-    private Student buildStudent() {
-        long id = Long.parseLong(tfManMatricula.getText());
-        String name = tfManNome.getText();
-
-        return new Student(name, id);
+    private Student buildStudent() throws InvalidListOperationException {
+        try {
+            long id = Long.parseLong(tfManMatricula.getText());
+            String name = tfManNome.getText();
+            return new Student(name, id);
+        } catch (NumberFormatException e) {
+            throw new InvalidListOperationException("gui.error.invalid.id");
+        }
     }
     
     private Comparator<Student> getManComparator() {
@@ -178,30 +161,7 @@ public class AddManualController implements Initializable{
     
     
     private boolean validateFields() {
-        return (!tfManMatricula.getText().isBlank() && 
+        return (!tfManMatricula.getText().isBlank() || 
                 !tfManNome.getText().isBlank());
-    }
-
-    private void handleRemove() {
-        System.out.println("Removendo...");
-        // lógica de remoção
-    }
-    
-    private void showError(String messageKey) {
-        String message = ExceptionMessages.get(messageKey);
-        
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erro");
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-    
-    private void showSuccess(String messageKey, Object... params) {
-        String message = String.format(
-                ExceptionMessages.get(messageKey), params);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sucesso");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

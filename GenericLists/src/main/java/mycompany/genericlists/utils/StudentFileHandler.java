@@ -17,33 +17,22 @@ import mycompany.genericlists.models.Student;
  *
  * @author vitor
  */
-public class StudentFileHandler extends FileHandler<Student>{
+public class StudentFileHandler {
+    
+    private final File file;
     
     public StudentFileHandler(File file) {
-        super(file);
+        this.file = file;
     }
     
-    @Override
-    public List<Student> load() throws IOException {
-        List<Student> students = new ArrayList<>();
-        
+    public void load(List<Student> students) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
-            
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 Student student = Student.parseStudent(line);
                 students.add(student);
             }
         }
-        
-        return students;
-    }
-    
-    public ArrayList<Student> makeArrayList() throws IOException {
-        return new ArrayList<>(load());
-    }
-    
-    public LinkedList<Student> makeLinkedList() throws IOException {
-        return new LinkedList<>(load());
     }
 }

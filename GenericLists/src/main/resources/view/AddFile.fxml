@@ -9,26 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" 
-            minWidth="0.0" 
-            prefHeight="509.0" 
-            prefWidth="432.0" 
-            xmlns="http://javafx.com/javafx/23.0.1" 
-            xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="mycompany.genericlists.controllers.AddFileController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="509.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycompany.genericlists.controllers.AddFileController">
     
     <children>
 
-       <AnchorPane minHeight="0.0" 
-                   minWidth="0.0" 
-                   prefHeight="509.0" 
-                   prefWidth="432.0">
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="509.0" prefWidth="432.0">
            
           <children>
 
-             <Label layoutX="2.0" 
-                    layoutY="82.0" 
-                    text="Arquivo:">
+             <Label layoutX="2.0" layoutY="82.0" text="Arquivo:">
                  
                 <font>
                    <Font size="16.0" />
@@ -36,12 +25,7 @@
                 
              </Label>
 
-             <TextField fx:id="tfArqCaminho" 
-                        layoutX="65.0" 
-                        layoutY="75.0" 
-                        prefHeight="28.0" 
-                        prefWidth="279.0" 
-                        promptText="Nenhum arquivo selecionado...">
+             <TextField fx:id="tfArqCaminho" layoutX="65.0" layoutY="75.0" prefHeight="28.0" prefWidth="279.0" promptText="Nenhum arquivo selecionado...">
                  
                 <font>
                    <Font size="14.0" />
@@ -49,13 +33,7 @@
                 
              </TextField>
 
-             <Button fx:id="btArqGerar" 
-                     layoutX="230.0" 
-                     layoutY="132.0" 
-                     mnemonicParsing="false" 
-                     prefHeight="36.0" 
-                     prefWidth="107.0" 
-                     text="Gerar lista">
+             <Button fx:id="btArqGerar" layoutX="230.0" layoutY="132.0" mnemonicParsing="false" onAction="#onBtArqGerarClick" prefHeight="36.0" prefWidth="107.0" text="Gerar lista">
                  
                 <font>
                    <Font size="16.0" />
@@ -63,13 +41,7 @@
                 
              </Button>
 
-             <Button fx:id="btArqProcurar" 
-                     layoutX="353.0" 
-                     layoutY="75.0" 
-                     mnemonicParsing="false" 
-                     prefHeight="20.0" 
-                     prefWidth="78.0" 
-                     text="Procurar">
+             <Button fx:id="btArqProcurar" layoutX="353.0" layoutY="75.0" mnemonicParsing="false" onAction="#onBtArqProcurarClick" prefHeight="20.0" prefWidth="78.0" text="Procurar">
                  
                 <font>
                    <Font size="14.0" />
@@ -77,107 +49,75 @@
                 
              </Button>
 
-             <CheckBox fx:id="cbArqArr" 
-                       layoutX="72.0" 
-                       layoutY="155.0" 
-                       mnemonicParsing="false" 
-                       text="ArrayList" />
+             <CheckBox fx:id="cbArqArrTop" layoutX="72.0" layoutY="155.0" mnemonicParsing="false" text="ArrayList" />
 
-             <CheckBox fx:id="cbArqLink" 
-                       layoutX="72.0" 
-                       layoutY="131.0" 
-                       mnemonicParsing="false" 
-                       text="LinkedList" />
+             <CheckBox fx:id="cbArqLinkTop" layoutX="72.0" layoutY="131.0" mnemonicParsing="false" text="LinkedList" />
 
-             <Label layoutX="66.0" 
-                    layoutY="283.0" 
-                    text="Nome:">
-                 
-                <font>
-                   <Font size="16.0" />
-                </font>
-                
-             </Label>
+             <Separator layoutX="2.0" layoutY="203.0" prefHeight="0.0" prefWidth="432.0" />
 
-             <TextField fx:id="tfArqNome" 
-                        layoutX="123.0" 
-                        layoutY="279.0" 
-                        prefHeight="23.0" 
-                        prefWidth="225.0">
-                 
-                <font>
-                   <Font size="16.0" />
-                </font>
-                
-             </TextField>
-
-             <Label layoutX="47.0" 
-                    layoutY="324.0" 
-                    text="Matricula:">
-                 
-                <font>
-                   <Font size="16.0" />
-                </font>
-                
-             </Label>
-
-             <TextField fx:id="tfarqMatricula" 
-                        layoutX="123.0" 
-                        layoutY="320.0" 
-                        prefHeight="23.0" 
-                        prefWidth="225.0">
-                 
-                <font>
-                   <Font size="16.0" />
-                </font>
-                
-             </TextField>
-
-             <Button fx:id="btArqOK" 
-                     layoutX="163.0" 
-                     layoutY="424.0" 
-                     mnemonicParsing="false" 
-                     prefHeight="36.0" 
-                     prefWidth="107.0" 
-                     text="OK">
-                 
-                <font>
-                   <Font size="16.0" />
-                </font>
-                
-             </Button>
-
-             <Separator layoutX="2.0" 
-                        layoutY="203.0" 
-                        prefHeight="0.0" 
-                        prefWidth="432.0" />
-
-             <ComboBox fx:id="cbbArqOp" 
-                       layoutX="124.0" 
-                       layoutY="358.0" 
-                       prefHeight="23.0" 
-                       prefWidth="219.0" 
-                       promptText="Selecione a operação..." />
-
-             <Label layoutX="149.0" 
-                    layoutY="15.0" 
-                    text="Carregar arquivo">
+             <Label layoutX="149.0" layoutY="15.0" text="Carregar arquivo">
                  
                 <font>
                    <Font size="18.0" />
                 </font>
                 
              </Label>
-
-             <Label layoutX="141.0" 
-                    layoutY="218.0" 
-                    text="Operaçoes com Listas">
-                 
-                <font>
-                   <Font size="18.0" />
-                </font>
+             
+            <AnchorPane fx:id="operationsPane" layoutX="3.0" layoutY="217.0" prefHeight="288.0" prefWidth="426.0">
+               <children>
+                  <CheckBox fx:id="cbArqArrBot" layoutX="72.0" layoutY="236.0" mnemonicParsing="false" text="ArrayList" />
+                  <CheckBox fx:id="cbArqLinkBot" layoutX="72.0" layoutY="212.0" mnemonicParsing="false" text="LinkedList" />
+                  
+                  <Button fx:id="btArqOK" onAction="#onBtArqOKClick"  layoutX="230.0" layoutY="215.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" text="OK">
+                      
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     
+                  </Button>
+                  
+                              <ComboBox fx:id="cbbArqOp" layoutX="119.0" layoutY="74.0" prefHeight="23.0" prefWidth="219.0" promptText="Selecione a operação..." />
+               </children></AnchorPane>
+            
+            <Label layoutX="61.0" layoutY="331.0" text="Nome:">
                 
-             </Label>
+               <font>
+                  <Font size="16.0" />
+               </font>
+               
+            </Label>
+            
+            <TextField fx:id="tfArqNome" layoutX="118.0" layoutY="327.0" prefHeight="23.0" prefWidth="225.0">
+                
+               <font>
+                  <Font size="16.0" />
+               </font>
+               
+            </TextField>
+            
+            <Label layoutX="42.0" layoutY="372.0" text="Matricula:">
+                
+               <font>
+                  <Font size="16.0" />
+               </font>
+               
+            </Label>
+            
+            <TextField fx:id="tfarqMatricula" layoutX="118.0" layoutY="368.0" prefHeight="23.0" prefWidth="225.0">
+                
+               <font>
+                  <Font size="16.0" />
+               </font>
+               
+            </TextField>
+            
+            <Label layoutX="133.0" layoutY="228.0" text="Operaçoes com Listas">
+                
+               <font>
+                  <Font size="18.0" />
+               </font>
+               
+            </Label>
              
           </children>
           

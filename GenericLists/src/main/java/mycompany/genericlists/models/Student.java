@@ -47,14 +47,14 @@ public class Student {
     @Override
     public String toString() {
         return "Nome: " + name + "\n" +
-                "ID: " + id;
+                "Matrícula: " + id;
     }
     
     public static Student parseStudent(String line) {
-        String[] parts = line.split(",", 2);
+        String[] parts = line.split(";", 2);
         int id = Integer.parseInt(parts[0].trim());
         String name = parts[1].trim();
         return new Student(name, id);
-    }
+    } 
 
 }

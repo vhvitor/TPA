@@ -6,6 +6,7 @@ package mycompany.genericlists.models;
 
 import mycompany.genericlists.exceptions.InvalidListOperationException;
 import java.util.Comparator;
+import mycompany.genericlists.exceptions.EmptyListException;
 
 /**
  *
@@ -28,5 +29,10 @@ public class StudentService extends Service<Student>{
         }
             
         list.add(student);
+    }
+
+    @Override
+    public void remove(Student student) throws InvalidListOperationException, EmptyListException {
+        list.remove(student);
     }
 }
